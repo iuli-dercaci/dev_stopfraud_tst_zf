@@ -13,8 +13,23 @@
         <controllerFile controllerName="Error"/>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
-      <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Phonecode"/>
+          <dbTableFile dbTableName="Continent"/>
+          <dbTableFile dbTableName="Phonetype"/>
+          <dbTableFile dbTableName="Phonezone"/>
+        </dbTableDirectory>
+        <modelFile modelName="ContinentMapper"/>
+        <modelFile modelName="PhonecodeMapper"/>
+        <modelFile modelName="PhonetypeMapper"/>
+        <modelFile modelName="PhonezoneMapper"/>
+      </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
       <viewsDirectory>
