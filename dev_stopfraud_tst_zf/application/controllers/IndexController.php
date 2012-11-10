@@ -1,4 +1,8 @@
 <?php
+/**
+ * landing page
+ * @author Iuli Dercaci <iuli.dercaci@site-me.info>
+ */
 
 class IndexController extends Zend_Controller_Action
 {

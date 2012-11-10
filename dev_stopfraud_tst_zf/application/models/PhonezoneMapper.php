@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Iuli Dercaci <iuli.dercaci@site-me.info>
+ */
 class Application_Model_PhonezoneMapper
 {
     protected $_dbTable;
