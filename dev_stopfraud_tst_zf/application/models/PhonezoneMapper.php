@@ -19,10 +19,18 @@ class Application_Model_PhonezoneMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Guestbook');
+            $this->setDbTable('Application_Model_DbTable_Phonezone');
         }
         return $this->_dbTable;
     }
 
+    public function fetchFormSelectOptions(){
+        $resultSet = $this->getDbTable()->fetchAll();
+        $regions = array();
+        foreach ($resultSet as $row){
+            $regions[$row->ref_phonezoneID] = $row->Caption_eng;
+        }
+        return $regions;
+    }
 }
 
