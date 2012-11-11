@@ -9,7 +9,6 @@ class AddController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
     }
 
     public function indexAction()
@@ -28,8 +27,7 @@ class AddController extends Zend_Controller_Action
                 }
                 //resulting file contents
                 $parser = new Excel_Parcer($upload->getFileName('upload'));
-                $data = $parser->toArray(true);
-                $this->forward('add',null,null,array('data' => $data));
+                $this->forward('save', null, null, array('data' => $parser->toArray(true)));
             } else {
                 //data is not valid
                 $form->populate($formData);
@@ -38,9 +36,17 @@ class AddController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    public function addAction()
+    public function saveAction()
     {
-        Zend_Debug::dump($this->_request->getParam('data'));
+        $data = $this->_request->getParam('data');
+        try {
+            $regionId = $this->_request->getPost('regions', false);
+            $result = $this->_helper->{'SortData' . $regionId}('test');
+            throw new Exception('Helper for given region id (' . $regionId . ') was not found');
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        echo $result;
     }
 
 
