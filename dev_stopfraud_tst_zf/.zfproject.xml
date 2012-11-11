@@ -30,6 +30,7 @@
           <dbTableFile dbTableName="Continent"/>
           <dbTableFile dbTableName="Phonetype"/>
           <dbTableFile dbTableName="Phonezone"/>
+          <dbTableFile dbTableName="Structure"/>
         </dbTableDirectory>
         <modelFile modelName="ContinentMapper"/>
         <modelFile modelName="PhonecodeMapper"/>
@@ -39,6 +40,7 @@
         <modelFile modelName="Phonetype"/>
         <modelFile modelName="Phonecode"/>
         <modelFile modelName="Continent"/>
+        <modelFile modelName="Structure"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

@@ -21,7 +21,7 @@ class Application_Model_PhonetypeMapper
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Guestbook');
+            $this->setDbTable('Application_Model_DbTable_Phonetype');
         }
         return $this->_dbTable;
     }
