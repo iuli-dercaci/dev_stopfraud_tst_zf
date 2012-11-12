@@ -14,7 +14,12 @@ class AddController extends Zend_Controller_Action
     public function indexAction()
     {
         $mapper = new Application_Model_PhonezoneMapper();
-        $form = new Application_Form_AddInfo(array('regions' => $mapper->fetchFormSelectOptions()));
+        $form = new Application_Form_AddInfo(
+            array(
+                'regions' => $mapper->fetchFormSelectOptions(),
+                'countries' => $this->_helper->CountryAbbr()
+            )
+        );
 
         if ($this->_request->isPost()){
             $formData = $this->_request->getPost();
@@ -40,13 +45,13 @@ class AddController extends Zend_Controller_Action
     {
         $data = $this->_request->getParam('data');
         try {
-            $regionId = $this->_request->getPost('regions', false);
-            $result = $this->_helper->{'SortData' . $regionId}('test');
-            throw new Exception('Helper for given region id (' . $regionId . ') was not found');
+            $regionId = $this->_request->getPost('region', false);
+            $processedData = $this->_helper->{'SortData' . $regionId}($data);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        echo $result;
+        $mapper = new Application_Model_PhonecodeMapper();
+        $this->vew->message = $mapper->addInfo($processedData);
     }
 
 

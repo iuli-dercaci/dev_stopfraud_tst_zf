@@ -26,5 +26,13 @@ class Application_Model_PhonecodeMapper
         return $this->_dbTable;
     }
 
+    public function addInfo(array $data)
+    {
+        foreach($data as $item){
+            $this->getDbTable()->insert($item);
+        }
+        return count($data);
+    }
+
 }
 

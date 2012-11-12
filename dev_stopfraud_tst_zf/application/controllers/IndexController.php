@@ -14,9 +14,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
-        $mapper = new Application_Model_StructureMapper();
-        Zend_Debug::dump($mapper->getRegionIdByZoneId(1));
     }
 
 
