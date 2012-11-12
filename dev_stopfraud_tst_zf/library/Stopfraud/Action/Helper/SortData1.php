@@ -7,10 +7,18 @@
 
 class Stopfraud_Action_Helper_SortData1 extends Zend_Controller_Action_Helper_Abstract
 {
-    //@todo
+    /**
+     * assembling the data for inserting into the DB
+     * @param array $data
+     * @return array
+     * @throws Exception
+     */
     public function direct(array $data)
     {
-        if (false === ($region = $this->getRequest()->getPost('regions', false))){
+        if (false === ($region = $this->getRequest()->getPost('region', false))){
+            throw new Exception('region ID was not found');
+        }
+        if (false === ($country = $this->getRequest()->getPost('country', false))){
             throw new Exception('region ID was not found');
         }
         $structure_id = $this->_getRegionId($region);
@@ -26,6 +34,7 @@ class Stopfraud_Action_Helper_SortData1 extends Zend_Controller_Action_Helper_Ab
                     $line_data['c5'] = $m['c5'];
                 }
                 $line_data['Full_Prefix'] = preg_replace('/\D/', '', $line[1]);
+                $line_data['Country_A2'] = $country;
                 $line_data['ZoneID'] = $region;
                 $line_data['Region1_rus'] = $line_data['Region1_rom'] = $line_data['Region1_eng'] = $line[4];
                 $line_data['City_rus'] = $line_data['City_rom'] = $line_data['City_eng'] = $line[2];
@@ -36,7 +45,7 @@ class Stopfraud_Action_Helper_SortData1 extends Zend_Controller_Action_Helper_Ab
                 $parsed_data[] = $line_data;
             }
         }
-        return $data;
+        return $parsed_data;
     }
 
     /**
@@ -50,13 +59,26 @@ class Stopfraud_Action_Helper_SortData1 extends Zend_Controller_Action_Helper_Ab
         $mapper = new Application_Model_StructureMapper();
         return $mapper->getRegionIdByZoneId($zoneId);
     }
-    //@todo
+
+    /**
+     * getting phone type abbreviation
+     * @param string $name
+     * @return string
+     */
     private function _getPhoneType($name){
-        /*$name = trim(strtolower($name));
-        $result = 'Unknown';
-        if(isset($this->_config['phone_types'][$name])){
-            $result = $this->_config['phone_types'][$name];
+        $name = ucfirst(trim($name));
+        $types = array(
+            'LL' => 'Landline',
+            'MB' => 'Cell Number',
+            'GS' => '',
+            'VO' => '',
+            'UK' => 'Unknown',
+            'NC' => '',
+            'RC' => ''
+        );
+        if (false === ($type = array_search($name, $types))){
+            $type = 'UK';
         }
-        return $result;*/
+        return $type;
     }
 }

@@ -8,11 +8,13 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="navigation">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="<?php echo $this->url(array('controller' => 'add', 'action' => 'index'));?>">Add info</a></li>
-                </ul>
+            <div class="row navigation">
+                <div class="half centered">
+                    <ul>
+                        <li><a class="btn" href="/">Home</a></li>
+                        <li><a class="btn" href="<?php echo $this->url(array('controller' => 'add', 'action' => 'index'));?>">Add info</a></li>
+                    </ul>
+                </div>
             </div>
             <?php echo $this->layout()->content; ?>
         </div>
