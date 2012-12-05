@@ -37,11 +37,8 @@ class Stopfraud_Action_Helper_SortData1 extends Zend_Controller_Action_Helper_Ab
                 $line_data['City_rus'] = $line_data['City_rom'] = $line_data['City_eng'] = $line[2];
                 $line_data['Name_rus'] = $line_data['Name_rom'] = $line_data['Name_eng'] = $line[3];
                 $line_data['TypeID'] = $this->_getPhoneType($line[5]);
-
                 //detect number related data
                 $line_data += $codeDetector->direct($line[1]);
-                Zend_Debug::dump($line_data);
-                exit;
             }
             if (!empty($line_data)){
                 $parsed_data[] = $line_data;
