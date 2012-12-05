@@ -1,5 +1,6 @@
 <?php
 /**
+ * ut_ref_phonecode model
  * @author Iuli Dercaci <iuli.dercaci@site-me.info>
  */
 class Application_Model_Phonecode
@@ -11,6 +12,10 @@ class Application_Model_Phonecode
     protected $_R3;
     protected $_C5;
     protected $_Full_Prefix;
+    protected $_Range_Min;
+    protected $_Range_Max;
+    protected $_Length_Min;
+    protected $_Length_Max;
     protected $_ZoneID;
     protected $_Country_A2;
     protected $_Region1_rus;
@@ -26,6 +31,11 @@ class Application_Model_Phonecode
     protected $_Name_rom;
     protected $_Name_eng;
     protected $_TypeID;
+    protected $_StartDate;
+    protected $_StopDate;
+    protected $_ActualDate;
+    protected $_LastDate;
+    protected $_AddInfo;
 
     public function __construct(array $options = null)
     {
