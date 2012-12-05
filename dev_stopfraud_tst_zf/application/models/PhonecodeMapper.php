@@ -26,9 +26,16 @@ class Application_Model_PhonecodeMapper
         return $this->_dbTable;
     }
 
+    /*
+     * saving data in table
+     */
     public function addInfo(array $data)
     {
+        $date = new Zend_Db_Expr('CURDATE()');
         foreach($data as $item){
+            if(!isset($item['LastUpdate'])){
+                $item['LastUpdate'] = $date;
+            }
             $this->getDbTable()->insert($item);
         }
         return count($data);
